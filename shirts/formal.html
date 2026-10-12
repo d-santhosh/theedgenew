@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formal Shirts - The Edge Showroom</title>
+    <link rel="stylesheet" href="../css/app.css">
+    <link rel="stylesheet" href="../css/showroom.css">
+</head>
+<body>
+    <div id="site-header"></div>
+
+    <main style="padding-top: 80px;">
+        <div class="category-page-container">
+            <div class="category-page-header">
+                <h2>Formal Shirts <span class="product-count" id="product-count"></span></h2>
+            </div>
+            <div class="product-grid" id="product-grid">
+                <!-- Products dynamically rendered -->
+            </div>
+        </div>
+    </main>
+
+    <div id="site-footer"></div>
+
+    <!-- Common Layout Scripts -->
+    <script src="../includes/header.js" data-base="../"></script>
+    <script src="../includes/footer.js" data-base="../"></script>
+    <script src="../script.js"></script>
+
+    <script>
+    const categoryPath = "../public/shirts/formal";
+    const categoryTitle = "Formal Shirts";
+
+    // 🛍️ YOU CAN ADD OR REMOVE PRODUCTS HERE VERY EASILY! 🛍️
+    const products = [
+        { name: "Classic Resort", price: "1,299.00", badge: "NEW", images: ["img1.jpg", "img2.jpg", "img3.jpg"] },
+        { name: "Premium Casual", price: "1,499.00", badge: "Trending", images: ["img2.jpg", "img3.jpg", "img4.jpg"] },
+        { name: "Vintage Leaf", price: "1,199.00", badge: "", images: ["img3.jpg", "img4.jpg", "img5.jpg"] },
+        { name: "Geometric Pattern", price: "1,599.00", badge: "NEW", images: ["img4.jpg", "img5.jpg", "img6.jpg"] },
+        { name: "Signature Collection", price: "1,599.00", badge: "NEW", images: ["img5.jpg", "img6.jpg", "img7.jpg"] },
+        { name: "Exclusive Range", price: "1,899.00", badge: "NEW", images: ["img6.jpg", "img7.jpg", "img1.jpg"] },
+        { name: "Modern Classic", price: "1,499.00", badge: "NEW", images: ["img7.jpg", "img1.jpg", "img2.jpg"] },
+        { name: "Test Modern Classic", price: "2,499.00", badge: "Trending", images: ["img1.jpg", "img1.jpg", "img4.jpg", "img2.jpg"] },
+        { name: "New Test Modern Classic", price: "3,499.00", badge: "Trending", images: ["img1.jpg", "img1.jpg", "img4.jpg", "img2.jpg"] }
+    ];
+
+    function renderProducts() {
+        const grid = document.getElementById("product-grid");
+        let html = "";
+        products.forEach((prod, i) => {
+            const pid = `prod-${i}`;
+            const dataImages = prod.images.map(img => `${categoryPath}/${img}`).join(",");
+            const imgSrc = `${categoryPath}/${prod.images[0]}`;
+            const badgeHtml = prod.badge ? `<span class="product-badge">${prod.badge}</span>` : "";
+
+            html += `
+                <div class="product-card-item">
+                    <div class="product-img-wrapper">
+                        ${badgeHtml}
+                        <img id="${pid}" src="${imgSrc}" data-images="${dataImages}" data-current="0" alt="${prod.name} ${categoryTitle}" />
+                        <div class="img-nav-buttons">
+                            <button class="img-nav-btn left" onclick="changeImage('${pid}', -1)">&lt;</button>
+                            <button class="img-nav-btn right" onclick="changeImage('${pid}', 1)">&gt;</button>
+                        </div>
+                    </div>
+                    <div class="product-card-info">
+                        <h4 class="product-title">${prod.name} ${categoryTitle}</h4>
+                        <p class="product-price">Rs. ${prod.price}</p>
+                        <div class="product-sizes">
+                            <span>38</span><span>40</span><span>42</span><span>44</span><span>46</span>
+                        </div>
+                    </div>
+                </div>
+            `;
+        });
+        grid.innerHTML = html;
+        const countEl = document.getElementById("product-count");
+        if (countEl) countEl.innerText = `(${products.length} products)`;
+    }
+
+    document.addEventListener("DOMContentLoaded", renderProducts);
+    </script>
+</body>
+</html>

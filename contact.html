@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - The Edge Showroom</title>
+    <link rel="stylesheet" href="css/app.css">
+    <link rel="stylesheet" href="css/showroom.css">
+    <style>
+        .contact-page-wrapper {
+            background-color: #f8f9fa;
+            min-height: calc(100vh - 80px);
+            padding: 50px 20px 90px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            box-sizing: border-box;
+        }
+
+        /* Top Header Section */
+        .contact-header {
+            text-align: center;
+            margin-bottom: 40px;
+            max-width: 650px;
+        }
+
+        .page-title {
+            font-size: 38px;
+            font-weight: 800;
+            color: #1a2734;
+            margin: 0 0 14px 0;
+            letter-spacing: -0.5px;
+        }
+
+        .page-title span {
+            color: #f26522;
+        }
+
+        .page-subtitle {
+            font-size: 14px;
+            color: #555e6d;
+            line-height: 1.6;
+            margin: 0 auto 20px auto;
+        }
+
+        .top-accent-bar {
+            width: 40px;
+            height: 3.5px;
+            background: #f26522;
+            border-radius: 3px;
+            margin: 0 auto;
+        }
+
+        /* Cards Layout */
+        .contact-cards-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            width: 100%;
+            max-width: 1100px;
+            justify-content: center;
+            align-items: stretch;
+        }
+
+        /* Left Card: Customer Support Info */
+        .info-card {
+            flex: 1 1 440px;
+            max-width: 520px;
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 45px 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            box-sizing: border-box;
+        }
+
+        /* Decorative faint blob in top-right corner */
+        .info-card::before {
+            content: "";
+            position: absolute;
+            top: -35px;
+            right: -35px;
+            width: 130px;
+            height: 130px;
+            background: #fff5ee;
+            border-radius: 50%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .info-section {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+            position: relative;
+            z-index: 1;
+        }
+
+        .icon-badge {
+            width: 48px;
+            height: 48px;
+            border-radius: 14px;
+            background: #fff0e6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            color: #f26522;
+        }
+
+        .info-content {
+            flex: 1;
+        }
+
+        .info-title {
+            font-size: 19px;
+            font-weight: 700;
+            color: #1a2734;
+            margin: 0 0 6px 0;
+            letter-spacing: -0.2px;
+        }
+
+        .info-subtitle {
+            font-size: 13.5px;
+            color: #718096;
+            margin: 0 0 10px 0;
+            line-height: 1.4;
+        }
+
+        .info-phone {
+            font-size: 15px;
+            font-weight: 700;
+            color: #1a2734;
+            margin: 0 0 6px 0;
+        }
+
+        .info-email {
+            font-size: 14.5px;
+            font-weight: 600;
+            color: #f26522;
+            text-decoration: none;
+            display: inline-block;
+            transition: opacity 0.2s;
+        }
+
+        .info-email:hover {
+            opacity: 0.85;
+        }
+
+        .info-divider {
+            height: 1px;
+            background: #f0f2f5;
+            margin: 32px 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .info-address {
+            font-size: 13.5px;
+            color: #718096;
+            line-height: 1.65;
+            margin: 0 0 14px 0;
+        }
+
+        .info-timing {
+            margin: 0;
+            font-size: 13.5px;
+            color: #1a2734;
+        }
+
+        .info-timing strong {
+            font-weight: 700;
+        }
+
+        .info-timing span {
+            color: #f26522;
+            font-weight: 600;
+        }
+
+        /* Right Card: Send a Message Form */
+        .form-card {
+            flex: 1 1 440px;
+            max-width: 520px;
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 45px 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-title {
+            font-size: 26px;
+            font-weight: 800;
+            color: #1a2734;
+            margin: 0 0 28px 0;
+            letter-spacing: -0.5px;
+        }
+
+        .form-grid-row {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 18px;
+        }
+
+        .form-field {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-label {
+            font-size: 11px;
+            font-weight: 700;
+            color: #718096;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            margin-bottom: 8px;
+        }
+
+        .form-input, .form-textarea {
+            background: #f4f6f8;
+            border: 1px solid transparent;
+            border-radius: 10px;
+            padding: 13px 16px;
+            font-size: 14px;
+            color: #1a2734;
+            outline: none;
+            transition: all 0.2s ease;
+            box-sizing: border-box;
+            width: 100%;
+            font-family: inherit;
+        }
+
+        .form-input:focus, .form-textarea:focus {
+            background: #ffffff;
+            border-color: #f26522;
+            box-shadow: 0 0 0 3px rgba(242, 101, 34, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 110px;
+        }
+
+        .submit-btn {
+            background: #e66016;
+            color: #ffffff;
+            border: none;
+            border-radius: 12px;
+            padding: 15px;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 6px 18px rgba(230, 96, 22, 0.28);
+            margin-top: 6px;
+        }
+
+        .submit-btn:hover {
+            background: #d4520a;
+            transform: translateY(-1px);
+            box-shadow: 0 8px 22px rgba(230, 96, 22, 0.35);
+        }
+
+        @media (max-width: 768px) {
+            .contact-cards-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            .info-card, .form-card {
+                width: 100%;
+                max-width: 100%;
+                padding: 30px 24px;
+            }
+            .form-grid-row {
+                flex-direction: column;
+                gap: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="site-header"></div>
+
+    <main style="padding-top: 80px;">
+        <div class="contact-page-wrapper">
+            <!-- Header section matching user screenshot -->
+            <div class="contact-header">
+                <h1 class="page-title">Let's <span>Talk.</span></h1>
+                <p class="page-subtitle">
+                    Have a question or want to work together? Leave us a message below or<br />
+                    reach out through our support channels.
+                </p>
+                <div class="top-accent-bar"></div>
+            </div>
+
+            <div class="contact-cards-container">
+                <!-- Left Card: Customer Support Information -->
+                <div class="info-card">
+                    <div>
+                        <!-- Section 1: Customer Support -->
+                        <div class="info-section">
+                            <div class="icon-badge">
+                                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                                </svg>
+                            </div>
+                            <div class="info-content">
+                                <h3 class="info-title">Customer Support</h3>
+                                <p class="info-subtitle">For Corporate Enquiries Reach out to us at:</p>
+                                <p class="info-phone">+91 8667614828</p>
+                                <a href="mailto:theedgetirupur@gmail.com" class="info-email">theedgetirupur@gmail.com</a>
+                            </div>
+                        </div>
+
+                        <!-- Divider Line -->
+                        <div class="info-divider"></div>
+
+                        <!-- Section 2: Our Office Branches -->
+                        <div class="info-section">
+                            <div class="icon-badge">
+                                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                                    <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                                </svg>
+                            </div>
+                            <div class="info-content">
+                                <h3 class="info-title">Our Office Branches</h3>
+                                <p class="info-address">
+                                    Bungalow stop, 6, Ganga Nagar 1st St, Ram Nagar, Ganga<br />
+                                    Nagar, Ramaiya Colony,<br />
+                                    Tiruppur, Tamil Nadu 641602, India
+                                </p>
+                                <p class="info-timing">
+                                    <strong>Mon - Sun:</strong> <span>10:00am - 09:00pm</span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Card: Send a Message Form -->
+                <div class="form-card">
+                    <h2 class="form-title">Send a Message</h2>
+                    <form onsubmit="event.preventDefault(); alert('Message sent successfully!');">
+                        <div class="form-grid-row">
+                            <div class="form-field">
+                                <label class="form-label">NAME</label>
+                                <input type="text" class="form-input" placeholder="John Doe" required />
+                            </div>
+                            <div class="form-field">
+                                <label class="form-label">PHONE</label>
+                                <input type="tel" class="form-input" placeholder="+91 1234567890" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">EMAIL</label>
+                            <input type="email" class="form-input" placeholder="john@example.com" required />
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">MESSAGE</label>
+                            <textarea class="form-textarea" placeholder="How can we help you?" required></textarea>
+                        </div>
+
+                        <button type="submit" class="submit-btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div id="site-footer"></div>
+
+    <!-- Common Layout Scripts -->
+    <script src="includes/header.js"></script>
+    <script src="includes/footer.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
