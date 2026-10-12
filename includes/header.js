@@ -13,7 +13,12 @@
                 <img src="${base}public/logo.png" alt="The Edge Logo" class="logo-img" />
             </a>
         </div>
-        <nav class="nav-links">
+        <button class="mobile-hamburger-btn" id="mobileMenuBtn" aria-label="Toggle navigation">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <nav class="nav-links" id="mainNavLinks">
             <a href="${base}index.html">Home</a>
             <a href="${base}about.html">About Us</a>
             <div class="collection-dropdown">
@@ -63,5 +68,51 @@
         target.outerHTML = headerHTML;
     } else {
         document.body.insertAdjacentHTML('afterbegin', headerHTML);
+    }
+
+    // Interactive Mobile Menu Toggle
+    const mobileBtn = document.getElementById('mobileMenuBtn');
+    const navLinks = document.getElementById('mainNavLinks');
+
+    if (mobileBtn && navLinks) {
+        mobileBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            mobileBtn.classList.toggle('is-active');
+            navLinks.classList.toggle('mobile-open');
+        });
+
+        // Toggle dropdown on mobile
+        const dropdowns = navLinks.querySelectorAll('.collection-dropdown');
+        dropdowns.forEach(dropdown => {
+            const toggleSpan = dropdown.querySelector('.nav-item');
+            if (toggleSpan) {
+                toggleSpan.addEventListener('click', function(e) {
+                    if (window.innerWidth <= 868) {
+                        e.stopPropagation();
+                        // Close other dropdowns
+                        dropdowns.forEach(other => {
+                            if (other !== dropdown) other.classList.remove('is-expanded');
+                        });
+                        dropdown.classList.toggle('is-expanded');
+                    }
+                });
+            }
+        });
+
+        // Close menu when clicking outside or clicking a link
+        document.addEventListener('click', function(e) {
+            if (!navLinks.contains(e.target) && !mobileBtn.contains(e.target)) {
+                mobileBtn.classList.remove('is-active');
+                navLinks.classList.remove('mobile-open');
+            }
+        });
+
+        const links = navLinks.querySelectorAll('a');
+        links.forEach(link => {
+            link.addEventListener('click', function() {
+                mobileBtn.classList.remove('is-active');
+                navLinks.classList.remove('mobile-open');
+            });
+        });
     }
 })();
