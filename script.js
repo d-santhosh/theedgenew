@@ -1,8 +1,8 @@
 // Homepage Showcase Products
 const homeProducts = [
-    { id: 1, name: "Midnight Elegance", price: "₹2,499", image: "public/home_page/new_collection/oct/img1.jpeg" },
-    { id: 2, name: "Ruby Flare Gown", price: "₹3,299", image: "public/home_page/new_collection/oct/img2.jpeg" },
-    { id: 3, name: "Ocean Breeze Dress", price: "₹1,899", image: "public/home_page/new_collection/oct/img3.jpeg" },
+    { id: 1, name: "Men's Shirt", price: "₹2,499", image: "public/home_page/new_collection/oct/img1.jpeg" },
+    { id: 2, name: "Buy 2 Get 1 Free", price: "₹3,299", image: "public/home_page/new_collection/oct/img2.jpeg" },
+    { id: 3, name: "Buy 2 Get 1 Free", price: "₹1,899", image: "public/home_page/new_collection/oct/img3.jpeg" },
     { id: 4, name: "Golden Aura Silhouette", price: "₹4,199", image: "public/home_page/new_collection/img4.jpg" },
     { id: 5, name: "Velvet Night Suit", price: "₹2,999", image: "public/home_page/new_collection/img5.jpg" },
     { id: 6, name: "Pearl White Harmony", price: "₹3,599", image: "public/home_page/new_collection/img6.jpg" },
@@ -80,7 +80,7 @@ function openLightbox(product) {
 
 document.addEventListener('DOMContentLoaded', () => {
     const carouselContainer = document.getElementById('product-carousel');
-    
+
     // Inject products if carousel container exists on this page
     if (carouselContainer) {
         // Create the modal once
